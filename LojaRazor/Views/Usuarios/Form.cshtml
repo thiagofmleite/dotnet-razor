@@ -1,0 +1,96 @@
+﻿@{ 
+    @model LojaRazor.Models.Usuario
+}
+@*<form action="@Url.Action("Cadastra")" method="post">*@
+@using (Html.BeginForm("Cadastra", "Usuarios", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+
+        @*<label for="nome">Nome: </label>*@
+        @Html.LabelFor(usuario => usuario.Nome, "Nome:")
+        @*<input id="nome" type="text" name="usuario.Nome" value="@Model.Nome" />*@
+        @Html.TextBoxFor(usuario => usuario.Nome)
+        @Html.ValidationMessageFor(usuario => usuario.Nome)
+
+        <div class="control-group">
+            @Html.LabelFor(usuario => usuario.Sexo, "Sexo:")
+            <label class="inline radio">
+                @* cria o radio para a opção masculino *@
+                @Html.RadioButtonFor(u => u.Sexo, LojaRazor.Models.Sexo.Masculino)
+                Masculino
+            </label>
+            <label class="inline radio">
+                @* cria o radio para a opção feminino *@
+                @Html.RadioButtonFor(u => u.Sexo, LojaRazor.Models.Sexo.Feminino)
+                Feminino
+            </label>
+        </div>
+        @*<label for="email">E-mail: </label>
+        <input id="email" type="text" name="usuario.Email" value="@Model.Email" />*@
+        @Html.LabelFor(u => u.Email, "E-mail:")
+        @Html.TextBoxFor(u => u.Email)
+        @Html.ValidationMessageFor(u => u.Email)
+
+        @*<label for="senha">Senha:</label>
+        <input id="senha" type="password" name="usuario.Senha" value="@Model.Senha" />*@
+        @Html.LabelFor(u => u.Senha, "Senha:")
+        @Html.PasswordFor(u => u.Senha)
+        @Html.ValidationMessageFor(u => u.Senha)
+
+        @*<label for="dataDeNascimento">Data de Nascimento: </label>
+        <input id="dataDeNascimento" type="text" name="usuario.DataDeNascimento" value="@Model.DataDeNascimento.ToString("d")" />*@
+        @Html.LabelFor(u => u.DataDeNascimento, "Data de Nascimento:")
+        @Html.TextBoxFor(u => u.DataDeNascimento)
+        @Html.ValidationMessageFor(u => u.DataDeNascimento)
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Dados de Entrega</legend>
+
+        @*<label for="endereco">Endereço: </label>
+        <input id="endereco" type="text" name="usuario.Endereco" value="@Model.Endereco" />*@
+        @Html.LabelFor(u => u.Endereco, "Endereco:")
+        @Html.TextBoxFor(u => u.Endereco)
+        @Html.ValidationMessageFor(u => u.Endereco)
+
+        @*<label for="complemento">Complemento: </label>
+        <input id="complemento" type="text" name="usuario.Complemento" value="@Model.Complemento" />*@
+        @Html.LabelFor(u => u.Complemento, "Complemento:")
+        @Html.TextBoxFor(u => u.Complemento)
+        @Html.ValidationMessageFor(u => u.Complemento)
+
+        @*<label for="cep">CEP: </label>
+        <input id="cep" type="text" name="usuario.CEP" value="@Model.CEP"/>*@
+        @Html.LabelFor(u => u.CEP, "CEP:")
+        @Html.TextBoxFor(u => u.CEP)
+        @Html.ValidationMessageFor(u => u.CEP)
+
+        @Html.LabelFor(u => u.Estado, "UF:")
+        @Html.DropDownListFor(u => u.Estado, new SelectList(Enum.GetValues(typeof(LojaRazor.Models.Estados))))
+
+        @*<label for="observacoes">Observações: </label>
+        <textarea id="observacoes" name="usuario.Observacoes">@Model.Observacoes</textarea>*@
+        @Html.LabelFor(u => u.Observacoes, "Observações:")
+        @Html.TextAreaFor(u => u.Observacoes)
+        @Html.ValidationMessageFor(u => u.Observacoes)
+    </fieldset>
+    <div>
+        @*<input name="usuario.RecebePromocoes" type="checkbox" value="true" checked="@Model.RecebePromocoes" />
+        Desejo receber informações sobre promoções*@
+        @Html.CheckBoxFor(u => u.RecebePromocoes)
+        Desejo receber informações sobre promoções
+
+    </div>
+
+    <input type="submit" value="Cadastrar" class="btn btn-large" />
+}
+@*</form>*@
+
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/jquery-1.7.1.js"></script>    
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    }
